@@ -58,8 +58,6 @@ const QuizResults = ({
     sendAnswers();
   }, [answersKey, mutateAsync]);
 
-  console.log(results);
-
   // reset everything and let the user start over
   const handleRestart = () => {
     localStorage.clear();

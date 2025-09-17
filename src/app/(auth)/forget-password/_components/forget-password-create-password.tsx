@@ -30,7 +30,7 @@ export default function ForgetPasswordCreatePassword({
   prevStep: PrevStepType;
   email: string;
 }) {
-  const { error, isPending, mutateAsync } =
+  const { error, isPending, ResetPassword } =
     useAddForgetPasswordCreatePassword();
 
   const form = useForm<CreateNewPasswordValues>({
@@ -47,15 +47,12 @@ export default function ForgetPasswordCreatePassword({
   const onSubmit: SubmitHandler<CreateNewPasswordValues> = async (values) => {
     if (values?.newPassword) {
       const allValues = { email, newPassword: values.newPassword };
-      console.log(allValues);
 
-      const response = await mutateAsync(allValues, {
+      ResetPassword(allValues, {
         onSuccess: () => {
           window.location.href = "/login";
         },
       });
-
-      console.log(response);
     }
   };
 

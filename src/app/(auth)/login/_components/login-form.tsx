@@ -30,11 +30,9 @@ export function LoginForm() {
   });
 
   // Hook for login mutation
-
   const { mutateAsync, isPending, error: loginError } = useLogin();
 
   // Handle form submit
-
   const onSubmit: SubmitHandler<LoginValues> = async (values) => {
     await mutateAsync(values, {
       onSuccess: () => {
@@ -51,7 +49,6 @@ export function LoginForm() {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
           {/* Email field */}
-
           <FormField
             name="email"
             control={form.control}
@@ -73,7 +70,6 @@ export function LoginForm() {
           />
 
           {/* Password field */}
-
           <FormField
             name="password"
             control={form.control}
@@ -91,7 +87,6 @@ export function LoginForm() {
           />
 
           {/* Forgot password link */}
-
           <div className="flex justify-end text-blue-600 text-sm mt-2">
             <Link
               href="/forget-password"
@@ -102,11 +97,9 @@ export function LoginForm() {
           </div>
 
           {/* API error */}
-
           {loginError && <AuthError error={loginError.message} />}
 
           {/* Submit button */}
-
           <div>
             <Button
               type="submit"
@@ -120,7 +113,6 @@ export function LoginForm() {
       </Form>
 
       {/* Register link */}
-
       <div className="text-center text-sm font-medium text-gray-500">
         Don&apos;t have an account?
         <Link href="/register" className="text-blue-600 ml-2">

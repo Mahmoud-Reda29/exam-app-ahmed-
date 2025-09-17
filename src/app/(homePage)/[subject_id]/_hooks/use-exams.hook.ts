@@ -11,11 +11,13 @@ export function useExames(subjectId: string, limit: number = 4) {
         const res = await fetch(
           `/api/exams?subject=${subjectId}&limit=${limit}&page=${pageParam}`
         );
-        if (!res.ok) throw new Error("Failed to fetch exams");
+
+        if (!res.ok) throw new Error(res.statusText);
+        console.log("res  from useExams", res);
         return res.json();
       },
       getNextPageParam: (lastPage) => {
-        const meta = lastPage?.data?.metadata;
+        const meta = lastPage?.metadata;
         return meta.currentPage < meta.numberOfPages
           ? meta.currentPage + 1
           : undefined;

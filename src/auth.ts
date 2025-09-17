@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
         return {
           id: payload.user._id,
           accessToken: payload.token,
-          ...payload.user,
+          user: payload.user,
         };
       },
     }),
@@ -57,15 +57,7 @@ export const authOptions: NextAuthOptions = {
 
     // Maps token data into the session object
     session: ({ session, token }) => {
-      session._id = token._id;
-      session.email = token.email as string;
-      session.firstName = token.firstName as string;
-      session.lastName = token.lastName as string;
-      session.username = token.username as string;
-      session.role = token.role as "user" | "admin";
-      session.createdAt = token.createdAt as string;
-      session.phone = token.phone as string;
-      session.isVerified = token.isVerified as boolean;
+      session.user = token.user;
 
       return session;
     },

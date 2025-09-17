@@ -6,7 +6,6 @@ export const getSessionServer = () => {
   if (!session) {
     return null;
   }
-  console.log(session);
 
   return session;
 };

@@ -2,15 +2,16 @@ import { ExamsQuestionsResponse } from "@/lib/types/exam-questions";
 import { getDecodeToken } from "@/lib/utils/get-decode-token";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const theToken = await getDecodeToken();
 
-    const res = await fetch(`https://exam.elevateegy.com/api/v1/questions`, {
-      method: "GET",
+    const { searchParams } = new URL(request.url);
+    const examId = searchParams.get("exam");
+
+    const res = await fetch(`${process.env.API}/questions?exam=${examId}`, {
       headers: {
         token: theToken?.accessToken || "",
-        "Content-Type": "application/json",
       },
       cache: "no-store",
     });

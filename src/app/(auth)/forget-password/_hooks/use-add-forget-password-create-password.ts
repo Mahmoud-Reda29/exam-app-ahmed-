@@ -3,9 +3,13 @@ import { SendForgetPasswordCreatePassword } from "../_actions/forget-password-cr
 import { CreateNewPasswordRequest } from "@/lib/types/create-new-password";
 
 export function useAddForgetPasswordCreatePassword() {
-  const { mutateAsync, error, isPending } = useMutation({
+  const {
+    mutate: ResetPassword,
+    error,
+    isPending,
+  } = useMutation({
     mutationFn: (data: CreateNewPasswordRequest) =>
       SendForgetPasswordCreatePassword(data),
   });
-  return { mutateAsync, error, isPending };
+  return { ResetPassword, error, isPending };
 }

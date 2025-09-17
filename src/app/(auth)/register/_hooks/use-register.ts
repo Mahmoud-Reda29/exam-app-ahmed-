@@ -4,7 +4,6 @@ import { RegisterValues } from "@/lib/schemes/register.scheme";
 
 export function useRegisterUser() {
   // Setup the mutation for registering a user
-
   const {
     mutateAsync,
     error,

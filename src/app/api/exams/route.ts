@@ -2,18 +2,29 @@ import { ExamsResopnse } from "@/lib/types/exams";
 import { getDecodeToken } from "@/lib/utils/get-decode-token";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const theToken = await getDecodeToken();
 
-    const res = await fetch(`https://exam.elevateegy.com/api/v1/exams`, {
-      method: "GET",
-      headers: {
-        token: theToken?.accessToken || "",
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
+    const { searchParams } = new URL(request.url);
+    const subjectId = searchParams.get("subject");
+    const limit = searchParams.get("limit") || "4";
+    const pageParam = searchParams.get("page") || "1";
+    console.log("subjectId from route handler", subjectId);
+
+    if (!subjectId) {
+      return NextResponse.json({ error: "Missing subjectId" }, { status: 400 });
+    }
+
+    const res = await fetch(
+      `https://exam.elevateegy.com/api/v1/exams?subject=${subjectId}&limit=${limit}&page=${pageParam}`,
+      {
+        headers: {
+          token: theToken?.accessToken || "",
+        },
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       let errorMessage;
@@ -26,7 +37,7 @@ export async function GET() {
     }
 
     const data: GetApiResponse<ExamsResopnse> = await res.json();
-    return NextResponse.json({ data }, { status: 200 });
+    return NextResponse.json(data, { status: 200 });
   } catch (err) {
     console.error("Unexpected error in GET /api/exams:", err);
     return NextResponse.json(

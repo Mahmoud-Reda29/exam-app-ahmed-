@@ -31,7 +31,7 @@ export default function ForgetPasswordEmail({
   setEmail: React.Dispatch<React.SetStateAction<string>>;
 }) {
   // hook to send email request
-  const { mutateAsync, error, isPending } = useAddForgetPasswordEmail();
+  const { ForgetPassword, error, isPending } = useAddForgetPasswordEmail();
 
   // form config with zod validation
   const form = useForm({
@@ -45,14 +45,13 @@ export default function ForgetPasswordEmail({
 
   // handle submit
   const onSubmit: SubmitHandler<EmailForgetPasswordValue> = async (values) => {
-    const res = await mutateAsync(values, {
+    ForgetPassword(values, {
       onSuccess: () => {
         form.reset();
         setEmail(values.email);
         nextStep();
       },
     });
-    console.log(res);
   };
 
   return (

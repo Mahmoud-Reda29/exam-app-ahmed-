@@ -5,12 +5,13 @@ import {
   FolderCode,
 } from "lucide-react";
 
+type FeatureType = {
+  title: string;
+  description: string;
+  icon: JSX.Element;
+};
+
 export default function LeftPanel() {
-  type FeatureType = {
-    title: string;
-    description: string;
-    icon: JSX.Element;
-  };
   const features: FeatureType[] = [
     {
       title: "Tailored Diplomas",

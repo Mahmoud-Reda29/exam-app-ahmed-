@@ -3,8 +3,12 @@ import { ResetCodeValues } from "@/lib/schemes/forget-password.scheme";
 import { SendForgetPasswordResetCode } from "../_actions/forget-password-reset-code.action";
 
 export function useAddForgetPasswordResetCode() {
-  const { mutateAsync, error, isPending } = useMutation({
+  const {
+    mutate: VerifyOtp,
+    error,
+    isPending,
+  } = useMutation({
     mutationFn: (data: ResetCodeValues) => SendForgetPasswordResetCode(data),
   });
-  return { mutateAsync, error, isPending };
+  return { VerifyOtp, error, isPending };
 }

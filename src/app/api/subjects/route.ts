@@ -10,14 +10,10 @@ export async function GET(req: Request) {
   const theToken = await getDecodeToken();
 
   const res = await fetch(
-    // `${process.env.BASE_URL!}${process.env
-    //   .SUBJECTS_URL!}?limit=${limit}&page=${page}`,
-    `https://exam.elevateegy.com/api/v1/subjects?limit=${limit}&page=${page}`,
+    `${process.env.API}/subjects?limit=${limit}&page=${page}`,
     {
-      method: "GET",
       headers: {
-        token: theToken?.accessToken || "",
-        "Content-Type": "application/json",
+        token: `${theToken?.accessToken}`,
       },
       cache: "no-store",
     }

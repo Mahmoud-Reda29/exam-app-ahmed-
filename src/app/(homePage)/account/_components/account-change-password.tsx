@@ -34,8 +34,7 @@ export default function AccountChangePassword() {
 
   const onSubmit: SubmitHandler<ChangePasswordValues> = async (values) => {
     await mutateAsync(values, {
-      onSuccess: (data) => {
-        console.log(data);
+      onSuccess: () => {
         signOut();
       },
     });

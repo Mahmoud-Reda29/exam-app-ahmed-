@@ -4,7 +4,7 @@ import { EmailForgetPasswordValue } from "@/lib/schemes/forget-password.scheme";
 
 export function useAddForgetPasswordEmail() {
   const {
-    mutateAsync,
+    mutate: ForgetPassword,
     error,
     isPending,
     data: forgetEmailData,
@@ -12,5 +12,5 @@ export function useAddForgetPasswordEmail() {
     mutationFn: (data: EmailForgetPasswordValue) =>
       SendForgetPasswordEmail(data),
   });
-  return { mutateAsync, error, isPending, forgetEmailData };
+  return { ForgetPassword, error, isPending, forgetEmailData };
 }

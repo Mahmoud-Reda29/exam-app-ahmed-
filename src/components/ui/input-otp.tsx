@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils"; // shadcn utility, change if you don't use it
+import { cn } from "@/lib/utils/cn"; // shadcn utility, change if you don't use it
 
 // ----------------------
 // Types

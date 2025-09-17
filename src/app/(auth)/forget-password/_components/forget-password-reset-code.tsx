@@ -41,7 +41,7 @@ export default function ForgetPasswordReset({
   nextStep,
   email,
 }: OtpProps) {
-  const { error, isPending, mutateAsync } = useAddForgetPasswordResetCode();
+  const { error, isPending, VerifyOtp } = useAddForgetPasswordResetCode();
   const [seconds, setSeconds] = React.useState(OTP_DURATION);
   const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -94,13 +94,12 @@ export default function ForgetPasswordReset({
 
   // Submit OTP
   const onSubmit = async (values: ResetCodeValues) => {
-    const res = await mutateAsync(values, {
+    VerifyOtp(values, {
       onSuccess: () => {
         if (nextStep) nextStep();
         localStorage.removeItem(OTP_TIMER_KEY);
       },
     });
-    console.log(res);
   };
 
   return (

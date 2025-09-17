@@ -1,6 +1,5 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ChevronDown, Timer } from "lucide-react";
@@ -8,10 +7,11 @@ import { useExames } from "@/app/(homePage)/[subject_id]/_hooks/use-exams.hook";
 import type { Exams } from "@/lib/types/exams";
 import { LoopLoader } from "../../_components/loop-loader";
 
-export default function SubjectAllExams() {
-  const params = useParams<{ subject_id: string }>();
-  const subjectId = params.subject_id;
-
+export default function SubjectAllExams({
+  subject_id,
+}: {
+  subject_id: string;
+}) {
   const {
     data,
     isLoading,
@@ -19,9 +19,7 @@ export default function SubjectAllExams() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useExames(subjectId);
-
-  console.log(data);
+  } = useExames(subject_id);
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
@@ -48,7 +46,8 @@ export default function SubjectAllExams() {
     );
 
   // Flatten  all pages
-  const allExams: Exams[] = data?.pages.flatMap((p) => p.data?.exams) || [];
+  const allExams: Exams[] = data?.pages.flatMap((p) => p.exams) || [];
+  console.log("allExams", allExams);
 
   return (
     <div className="w-full px-6 font-mono">
@@ -56,7 +55,7 @@ export default function SubjectAllExams() {
         {allExams.map((exam) => (
           <li key={exam._id}>
             <Link
-              href={`/${subjectId}/${exam._id}`}
+              href={`/${subject_id}/${exam._id}`}
               className="flex items-center justify-between bg-blue-50 px-4 py-3 border border-blue-100"
             >
               <div className="flex flex-col">

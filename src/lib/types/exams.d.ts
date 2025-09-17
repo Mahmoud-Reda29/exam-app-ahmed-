@@ -18,8 +18,6 @@ export type Exams = {
 };
 
 export type ExamsResopnse = {
-  data: {
-    metadata: Metadata;
-    exams: Exams[];
-  };
+  metadata: Metadata;
+  exams: Exams[];
 };

@@ -59,11 +59,11 @@ const ProfileAccount = () => {
   useEffect(() => {
     if (session) {
       form.reset({
-        firstName: session.firstName ?? "",
-        lastName: session.lastName ?? "",
-        username: session.username ?? "",
-        email: session.email ?? "",
-        phone: `+2${session.phone}`,
+        firstName: session.user.firstName ?? "",
+        lastName: session.user.lastName ?? "",
+        username: session.user.username ?? "",
+        email: session.user.email ?? "",
+        phone: `+20${session.user.phone}`,
       });
     }
   }, [session, form]);

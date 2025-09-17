@@ -10,7 +10,10 @@ export default function RootLayout({
 
   return (
     <div className="flex">
+      {/* Sidebar */}
       <Sidebar />
+
+      {/* Content */}
       <main className="ml-sidebar flex-1 h-screen overflow-y-auto">
         {children}
       </main>

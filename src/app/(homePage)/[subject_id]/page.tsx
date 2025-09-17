@@ -36,7 +36,7 @@ export default function Exams({ params }: { params: { subject_id: string } }) {
       />
 
       {/* List of exams */}
-      <SubjectAllExams />
+      <SubjectAllExams subject_id={subject_id} />
     </main>
   );
 }

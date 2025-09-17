@@ -19,7 +19,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/cn";
 
 type PhoneInputProps = Omit<
   React.ComponentProps<"input">,

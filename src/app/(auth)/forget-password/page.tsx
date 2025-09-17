@@ -13,7 +13,6 @@ const ForgetPassword = () => {
   return (
     <main>
       {/* Steps group for resetting password */}
-
       <StepsGroup />
     </main>
   );

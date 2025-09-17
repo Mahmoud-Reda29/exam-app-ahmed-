@@ -7,7 +7,6 @@ import getSessionServer from "@/lib/utils/get-Session";
 
 export default async function Sidebar() {
   const session = await getSessionServer();
-  console.log("Thi is Session", session);
 
   return (
     <div className=" relative ">
@@ -55,9 +54,11 @@ export default async function Sidebar() {
           />
           <div className="flex flex-col">
             <span className="text-base font-semibold text-blue-600">
-              {session?.firstName}
+              {session?.user?.firstName}
             </span>
-            <span className="text-sm text-gray-500">{session?.email}</span>
+            <span className="text-sm text-gray-500">
+              {session?.user?.email}
+            </span>
           </div>
 
           <SideBarMenu />
