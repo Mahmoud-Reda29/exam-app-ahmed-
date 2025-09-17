@@ -13,7 +13,6 @@ export function useExames(subjectId: string, limit: number = 4) {
         );
 
         if (!res.ok) throw new Error(res.statusText);
-        console.log("res  from useExams", res);
         return res.json();
       },
       getNextPageParam: (lastPage) => {

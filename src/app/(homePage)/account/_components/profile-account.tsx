@@ -30,7 +30,6 @@ import { useDeleteAccount } from "../_hooks/use-delete-account";
 const ProfileAccount = () => {
   const { data: session, status, update } = useSession();
   const { error, mutateAsync, isPending } = useUpdateAccountProfile();
-  console.log(session);
 
   const form = useForm<AccountProfileValues>({
     resolver: zodResolver(AccountProfileScheme),
@@ -90,7 +89,6 @@ const ProfileAccount = () => {
         onSuccess: async () => {
           // ✅ request new token/session
           await update(changed);
-          console.log("Profile updated & token refreshed");
         },
       });
     }

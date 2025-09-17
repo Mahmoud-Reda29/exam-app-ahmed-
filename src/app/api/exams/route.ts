@@ -10,14 +10,13 @@ export async function GET(request: Request) {
     const subjectId = searchParams.get("subject");
     const limit = searchParams.get("limit") || "4";
     const pageParam = searchParams.get("page") || "1";
-    console.log("subjectId from route handler", subjectId);
 
     if (!subjectId) {
       return NextResponse.json({ error: "Missing subjectId" }, { status: 400 });
     }
 
     const res = await fetch(
-      `https://exam.elevateegy.com/api/v1/exams?subject=${subjectId}&limit=${limit}&page=${pageParam}`,
+      `${process.env.API}/exams?subject=${subjectId}&limit=${limit}&page=${pageParam}`,
       {
         headers: {
           token: theToken?.accessToken || "",

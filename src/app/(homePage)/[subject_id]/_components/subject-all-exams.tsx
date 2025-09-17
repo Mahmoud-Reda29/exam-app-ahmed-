@@ -47,7 +47,6 @@ export default function SubjectAllExams({
 
   // Flatten  all pages
   const allExams: Exams[] = data?.pages.flatMap((p) => p.exams) || [];
-  console.log("allExams", allExams);
 
   return (
     <div className="w-full px-6 font-mono">
